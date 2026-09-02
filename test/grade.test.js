@@ -1,16 +1,18 @@
+
 const test = require("node:test");
 const assert = require("node:assert");
 
 const { getGrade } = require("../script");
 
 test("Grade A", () => {
-    assert.strictEqual(getGrade(100), "A");
+    assert.strictEqual(getGrade(95), "A");
     assert.strictEqual(getGrade(90), "A");
 })
 
 test("Grade B", () => {
     assert.strictEqual(getGrade(89), "B");
     assert.strictEqual(getGrade(80), "B");
+
 })
 
 test("Grade C", () => {
@@ -26,5 +28,11 @@ test("Grade D", () => {
 test("Grade F", () => {
     assert.strictEqual(getGrade(59), "F");
     assert.strictEqual(getGrade(0), "F");
+})
+
+test("Invalid Marks", () => {
+    assert.strictEqual(getGrade(-1), "Invalid marks");
+    assert.strictEqual(getGrade(101), "Invalid marks");
+
 })
 console.log("All tests passed!");

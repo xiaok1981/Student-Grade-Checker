@@ -1,5 +1,10 @@
+// Grade Calculation Logic
+
 function getGrade(marks) {
-    if (marks >= 90) {
+    // Handle invalid marks
+    if (marks < 0 || marks > 100) {
+        return "Invalid marks";
+    } else if (marks >= 90) {
         return "A";
     } else if (marks >= 80) {
         return "B";
@@ -8,6 +13,7 @@ function getGrade(marks) {
     } else if (marks >= 60) {
         return "D";
     } else {
+        // Assign grade F if marks are less than 60
         return "F";
     }
 }
@@ -18,6 +24,6 @@ function checkGrade() {
     document.getElementById("result").innerHTML = "Your grade is " + grade;
 }
 
-if (typeof module !== "undefined" && module.exports) {
-    module.exports = { getGrade, checkGrade };
+if (typeof module !== "undefined") {
+    module.exports = { getGrade };
 }
