@@ -1,16 +1,20 @@
 // Grade Calculation Logic
 
 function getGrade(marks) {
-    // Handle invalid marks
-    if (marks < 0 || marks > 100) {
+    // Handle invalid marks / non-numeric input
+    if (marks === null || marks === undefined || (typeof marks === "string" && marks.trim() === "") || isNaN(Number(marks))) {
         return "Invalid marks";
-    } else if (marks >= 90) {
+    }
+    const numMarks = Number(marks);
+    if (numMarks < 0 || numMarks > 100) {
+        return "Invalid marks";
+    } else if (numMarks >= 90) {
         return "A";
-    } else if (marks >= 80) {
+    } else if (numMarks >= 80) {
         return "B";
-    } else if (marks >= 70) {
+    } else if (numMarks >= 70) {
         return "C";
-    } else if (marks >= 60) {
+    } else if (numMarks >= 60) {
         return "D";
     } else {
         // Assign grade F if marks are less than 60
@@ -19,9 +23,15 @@ function getGrade(marks) {
 }
 
 function checkGrade() {
+    const nameInput = document.getElementById("name") || document.getElementById("studentName");
+    const name = nameInput ? nameInput.value.trim() : "";
     const marks = document.getElementById("marks").value;
     const grade = getGrade(marks);
-    document.getElementById("result").innerHTML = "Your grade is " + grade;
+    if (name) {
+        document.getElementById("result").innerHTML = `${name}'s grade is ${grade}`;
+    } else {
+        document.getElementById("result").innerHTML = "Your grade is " + grade;
+    }
 }
 
 if (typeof module !== "undefined") {
