@@ -33,6 +33,16 @@ test("Grade F", () => {
 test("Invalid Marks", () => {
     assert.strictEqual(getGrade(-1), "Invalid marks");
     assert.strictEqual(getGrade(101), "Invalid marks");
-
+    assert.strictEqual(getGrade("abc"), "Invalid marks");
+    assert.strictEqual(getGrade(""), "Invalid marks");
 })
+
+test("Non-numeric Marks Validation", () => {
+    assert.strictEqual(getGrade("invalid"), "Invalid marks");
+    assert.strictEqual(getGrade("hello"), "Invalid marks");
+    assert.strictEqual(getGrade(NaN), "Invalid marks");
+    assert.strictEqual(getGrade(null), "Invalid marks");
+    assert.strictEqual(getGrade(undefined), "Invalid marks");
+})
+
 console.log("All tests passed!");
